@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+
+    <link href="bootstrap/bootstrap-5.3.8-dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CORE VARIABLES & RESET --- */
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-secondary: #121212;
+            --primary: #6366f1;
+            --accent: #8b5cf6;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-image: url('./Images/bg.jpg');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* --- CUSTOM SCROLLBAR --- */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--primary), var(--accent));
+            border-radius: 5px;
+        }
+
+        /* --- UTILITIES --- */
+        .text-gradient {
+            background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 15px 0;
+        }
+
+        .nav-link {
+            color: var(--text-main) !important;
+            margin: 0 10px;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: var(--primary);
+            transition: 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 160px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Background Glow Orb */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(99,102,241,0.25) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+            filter: blur(50px);
+        }
+
+        .hero-img-wrapper {
+            position: relative;
+            z-index: 1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-img {
+            border-radius: 20px;
+            transform: rotate(-3deg);
+            border: 1px solid var(--glass-border);
+            box-shadow: 20px 20px 60px rgba(0,0,0,0.5);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(-3deg); }
+            50% { transform: translateY(-20px) rotate(-3deg); }
+            100% { transform: translateY(0px) rotate(-3deg); }
+        }
+
+        /* --- BUTTONS --- */
+        .btn-custom {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            border: none;
+            font-weight: 600;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-custom::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 0; height: 100%;
+            background: rgba(255,255,255,0.2);
+            transition: 0.3s;
+            z-index: -1;
+        }
+
+        .btn-custom:hover::before {
+            width: 100%;
+        }
+
+        .btn-outline-custom {
+            border: 2px solid var(--glass-border);
+            color: var(--text-main);
+            padding: 10px 30px;
+            border-radius: 50px;
+            background: transparent;
+            transition: 0.3s;
+        }
+
+        .btn-outline-custom:hover {
+            border-color: var(--primary);
+            color: white;
+        }
+
+        /* --- CARDS & GLASSMORPHISM --- */
+        .glass-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 30px;
+            transition: 0.4s;
+            height: 100%;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 40px rgba(99,102,241,0.15);
+        }
+
+        /* --- SECTION STYLING --- */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            margin-bottom: 60px;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        /* --- SERVICES / SKILLS --- */
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        /* --- PROJECTS --- */
+        .project-img-container {
+            overflow: hidden;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .project-img-container img {
+            width: 100%;
+            transition: 0.5s;
+        }
+
+        .glass-card:hover .project-img-container img {
+            transform: scale(1.1);
+        }
+
+        .tag {
+            background: rgba(99,102,241,0.2);
+            color: #a5b4fc;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+        }
+
+        /* --- TIMELINE (EXPERIENCE) --- */
+        .timeline {
+            border-left: 2px solid var(--glass-border);
+            padding-left: 30px;
+            margin-left: 10px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -37px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 3px solid var(--bg-dark);
+        }
+
+        /* --- CONTACT FORM --- */
+        .form-control {
+           background-color: #ffffff;
+            border: 1px solid var(--glass-border);
+            color: rgb(0, 0, 0);
+            padding: 15px;
+        }
+
+        .form-control:focus {
+            background-color: rgb(138, 138, 138);
+            border-color: var(--primary);
+            color: white;
+            box-shadow: none;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #f8f8f8;
+            padding: 50px 0;
+            border-top: 1px solid var(--glass-border);
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="100">
+
+    <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-4 text-white" href="#">
+                <i class="bi bi-code-square text-primary me-2"></i>My<span class="text-primary">Portfolio</span>
+            </a>
+            <button class="navbar-toggler bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Work</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                    <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                        <a href="#contact" class="btn btn-custom btn-sm">Let's Talk</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero d-flex align-items-center">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
+                    <span class="text-primary" style="font-size: 20px;">Hello, I am Dan</span>
+                    <h1 class="display-3 fw-bold my-3 mb-5">App Developer <br>
+                        <span class="text-gradient">Web Developer</span>
+                    </h1>
+                  
+                    <div class="d-flex gap-5">
+                        <a href="#projects" class="btn btn-custom">View My Work</a>
+                        <a href="#" class="btn btn-outline-custom"><i class="bi bi-github"></i> Github</a>
+                    </div>
+                    
+                  
+                </div>
+                <div class="col-lg-6 mt-5 mt-lg-0 text-center" data-aos="fade-left" data-aos-duration="1200">
+                    <div class="hero-img-wrapper" style="margin-top: 110px;;">
+                        <img src="Images/dan.jpg" alt="Profile" class="img-fluid hero-img" style="border: 3px solid rgb(248, 247, 247); ;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <section id="services mt-5" style="margin-top: 150px; margin-bottom: 100px;">
+        <div class="container mt-5">
+            <div class="text-center" data-aos="fade-up">
+                <h6 class="text-da text-uppercase">What I Do</h6>
+                <h2 class="section-title">My Expertise</h2>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="glass-card text-center">
+                        <div class="service-icon"><i class="bi bi-laptop"></i></div>
+                        <h4>Web Development</h4>
+                        <p class="text-white">Building fast, responsive, and scalable websites using modern technologies like React and Bootstrap.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="glass-card text-center">
+                        <div class="service-icon"><i class="bi bi-palette"></i></div>
+                        <h4>UI/UX Design</h4>
+                        <p class="text-white">Creating intuitive and aesthetically pleasing interfaces that drive user engagement.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="glass-card text-center">
+                        <div class="service-icon"><i class="bi bi-hdd-rack"></i></div>
+                        <h4>Backend Systems</h4>
+                        <p class="text-white">Developing robust server-side logic and database structures for complex applications.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-end mb-5" data-aos="fade-up">
+                <div>
+                    <h6 class="text-primary text-uppercase">Portfolio</h6>
+                    <h2 class="section-title mb-0">Featured Projects</h2>
+                </div>
+                <a href="#" class="text-decoration-none text-white d-none d-md-block">View All <i class="bi bi-arrow-right"></i></a>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="glass-card p-3">
+                        <div class="project-img-container">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Project 1">
+                        </div>
+                        <h4 class="mt-3">E-Commerce Platform</h4>
+                        <div class="mb-3">
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">MongoDB</span>
+                        </div>
+                        <p class="text-muted small">A full-stack shopping platform with payment integration and admin dashboard.</p>
+                        <a href="#" class="icon-link icon-link-hover text-white">Live Demo <i class="bi bi-box-arrow-up-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="glass-card p-3">
+                        <div class="project-img-container">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Project 2">
+                        </div>
+                        <h4 class="mt-3">Finance Dashboard</h4>
+                        <div class="mb-3">
+                            <span class="tag">Vue.js</span>
+                            <span class="tag">Firebase</span>
+                            <span class="tag">Chart.js</span>
+                        </div>
+                        <p class="text-muted small">Real-time data visualization dashboard for financial analytics.</p>
+                        <a href="#" class="icon-link icon-link-hover text-white">Live Demo <i class="bi bi-box-arrow-up-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="glass-card p-3">
+                        <div class="project-img-container">
+                            <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Project 3">
+                        </div>
+                        <h4 class="mt-3">SaaS Landing Page</h4>
+                        <div class="mb-3">
+                            <span class="tag">HTML5</span>
+                            <span class="tag">Bootstrap 5</span>
+                            <span class="tag">Sass</span>
+                        </div>
+                        <p class="text-muted small">High-converting landing page with modern animations and fast load times.</p>
+                        <a href="#" class="icon-link icon-link-hover text-white">Live Demo <i class="bi bi-box-arrow-up-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="bg-secondary-subtle" style="background: rgba(255,255,255,0.02);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h6 class="text-primary text-uppercase">Career Path</h6>
+                    <h2 class="section-title">Work Experience</h2>
+                    <p class="text-muted">A timeline of my professional journey and the skills I've gathered along the way.</p>
+                    <a href="#" class="btn btn-outline-custom mt-3">Download CV <i class="bi bi-download ms-2"></i></a>
+                </div>
+                <div class="col-lg-6 mt-5 mt-lg-0" data-aos="fade-left">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <span class="text-primary fw-bold">2024 - Present</span>
+                            <h5 class="fw-bold mt-1">Senior Frontend Dev</h5>
+                            <p class="text-muted mb-0">TechCorp Solutions</p>
+                            <small class="text-muted">Leading a team of 5 developers building enterprise React apps.</small>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="text-primary fw-bold">2021 - 2023</span>
+                            <h5 class="fw-bold mt-1">UI/UX Designer</h5>
+                            <p class="text-muted mb-0">Creative Agency</p>
+                            <small class="text-muted">Designed web interfaces for over 30 international clients.</small>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="text-primary fw-bold">2019 - 2021</span>
+                            <h5 class="fw-bold mt-1">Junior Web Developer</h5>
+                            <p class="text-muted mb-0">StartUp Inc.</p>
+                            <small class="text-muted">Maintained legacy code and implemented new features using PHP/JS.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="glass-card p-4 p-md-5" data-aos="zoom-in">
+                        <div class="text-center mb-5">
+                            <h6 class="text-primary text-uppercase">Get in Touch</h6>
+                            <h2 class="fw-bold">Let's Work Together</h2>
+                            <p class="">Contact me? Fill out the form below.</p>
+                        </div>
+                        
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="name" placeholder="Name">
+                                        <label for="name" class="text-muted">Your Name</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="email" class="form-control" id="email" placeholder="Email">
+                                        <label for="email" class="text-muted">Your Email</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="subject" placeholder="Subject">
+                                        <label for="subject" class="text-muted">Subject</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <textarea class="form-control" placeholder="Message" id="message" style="height: 150px"></textarea>
+                                        <label for="message" class="text-muted">Your Message</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 text-center mt-4">
+                                    <button type="submit" class="btn btn-custom btn-lg w-100">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container text-center">
+            <h3 class="fw-bold mb-4">Dev<span class="text-primary">Port</span></h3>
+            <div class="d-flex justify-content-center gap-4 mb-4">
+                <a href="#" class="text-muted fs-4"><i class="bi bi-twitter-x"></i></a>
+                <a href="#" class="text-muted fs-4"><i class="bi bi-linkedin"></i></a>
+                <a href="#" class="text-muted fs-4"><i class="bi bi-github"></i></a>
+                <a href="#" class="text-muted fs-4"><i class="bi bi-instagram"></i></a>
+            </div>
+            <p class="text-muted small mb-0">© 2026 Your Name. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        AOS.init({
+            once: true, // Animation happens only once
+            offset: 100, // Offset (in px) from the original trigger point
+            duration: 800, // Duration of animation
+        });
+    </script>
+</body>
+</html>
