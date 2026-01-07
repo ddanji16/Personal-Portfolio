@@ -52,7 +52,7 @@
         /* --- UTILITIES --- */
         .text-gradient {
             background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
-            -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 800;
         }
@@ -218,8 +218,8 @@
         }
 
         .tag {
-            background: rgba(99,102,241,0.2);
-            color: #a5b4fc;
+            background: white;
+            color: #000000;
             padding: 4px 12px;
             border-radius: 20px;
             font-size: 0.8rem;
@@ -271,9 +271,27 @@
             padding: 50px 0;
             border-top: 1px solid var(--glass-border);
         }
+        #box{
+            box-shadow: 10px 10px 10px rgb(95, 95, 95);
+        }
+        #box:hover{
+            background-color: rgb(255, 255, 255);
+            color: black;
+            box-shadow: 10px 10px 10px rgb(153, 29, 29);
+        }
     </style>
 </head>
 <body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="100">
+
+
+
+
+
+
+      
+    <!--NAVIGATION BAR-->
+
+
 
     <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
         <div class="container">
@@ -297,6 +315,17 @@
         </div>
     </nav>
 
+
+
+
+
+
+
+
+      
+    <!--HOMEPAGE SECTIONS-->
+
+
     <section id="home" class="hero d-flex align-items-center">
         <div class="container">
             <div class="row align-items-center">
@@ -314,7 +343,7 @@
                   
                 </div>
                 <div class="col-lg-6 mt-5 mt-lg-0 text-center" data-aos="fade-left" data-aos-duration="1200">
-                    <div class="hero-img-wrapper" style="margin-top: 110px;;">
+                    <div class="hero-img-wrapper" style="margin-top: 90px; margin-bottom: 30px;">
                         <img src="Images/dan.jpg" alt="Profile" class="img-fluid hero-img" style="border: 3px solid rgb(248, 247, 247); ;">
                     </div>
                 </div>
@@ -325,107 +354,18 @@
 
 
 
-    <section id="services mt-5" style="margin-top: 150px; margin-bottom: 100px;">
-        <div class="container mt-5">
-            <div class="text-center" data-aos="fade-up">
-                <h6 class="text-da text-uppercase">What I Do</h6>
-                <h2 class="section-title">My Expertise</h2>
-            </div>
-            
-            <div class="row g-4">
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="glass-card text-center">
-                        <div class="service-icon"><i class="bi bi-laptop"></i></div>
-                        <h4>Web Development</h4>
-                        <p class="text-white">Building fast, responsive, and scalable websites using modern technologies like React and Bootstrap.</p>
-                    </div>
-                </div>
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="glass-card text-center">
-                        <div class="service-icon"><i class="bi bi-palette"></i></div>
-                        <h4>UI/UX Design</h4>
-                        <p class="text-white">Creating intuitive and aesthetically pleasing interfaces that drive user engagement.</p>
-                    </div>
-                </div>
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="glass-card text-center">
-                        <div class="service-icon"><i class="bi bi-hdd-rack"></i></div>
-                        <h4>Backend Systems</h4>
-                        <p class="text-white">Developing robust server-side logic and database structures for complex applications.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section id="projects">
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-end mb-5" data-aos="fade-up">
-                <div>
-                    <h6 class="text-primary text-uppercase">Portfolio</h6>
-                    <h2 class="section-title mb-0">Featured Projects</h2>
-                </div>
-                <a href="#" class="text-decoration-none text-white d-none d-md-block">View All <i class="bi bi-arrow-right"></i></a>
-            </div>
 
-            <div class="row g-4">
-                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="glass-card p-3">
-                        <div class="project-img-container">
-                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Project 1">
-                        </div>
-                        <h4 class="mt-3">E-Commerce Platform</h4>
-                        <div class="mb-3">
-                            <span class="tag">React</span>
-                            <span class="tag">Node.js</span>
-                            <span class="tag">MongoDB</span>
-                        </div>
-                        <p class="text-muted small">A full-stack shopping platform with payment integration and admin dashboard.</p>
-                        <a href="#" class="icon-link icon-link-hover text-white">Live Demo <i class="bi bi-box-arrow-up-right"></i></a>
-                    </div>
-                </div>
+  
+    <!--INFO SECTIONS-->
 
-                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="glass-card p-3">
-                        <div class="project-img-container">
-                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Project 2">
-                        </div>
-                        <h4 class="mt-3">Finance Dashboard</h4>
-                        <div class="mb-3">
-                            <span class="tag">Vue.js</span>
-                            <span class="tag">Firebase</span>
-                            <span class="tag">Chart.js</span>
-                        </div>
-                        <p class="text-muted small">Real-time data visualization dashboard for financial analytics.</p>
-                        <a href="#" class="icon-link icon-link-hover text-white">Live Demo <i class="bi bi-box-arrow-up-right"></i></a>
-                    </div>
-                </div>
 
-                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="glass-card p-3">
-                        <div class="project-img-container">
-                            <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Project 3">
-                        </div>
-                        <h4 class="mt-3">SaaS Landing Page</h4>
-                        <div class="mb-3">
-                            <span class="tag">HTML5</span>
-                            <span class="tag">Bootstrap 5</span>
-                            <span class="tag">Sass</span>
-                        </div>
-                        <p class="text-muted small">High-converting landing page with modern animations and fast load times.</p>
-                        <a href="#" class="icon-link icon-link-hover text-white">Live Demo <i class="bi bi-box-arrow-up-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <section id="experience" class="bg-secondary-subtle" style="background: rgba(255,255,255,0.02);">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6" data-aos="fade-right">
-                    <h6 class="text-primary text-uppercase">Career Path</h6>
-                    <h2 class="section-title">Work Experience</h2>
+                    <h2 class="text-black text-uppercase mb-5">About Me</h2>
                     <p class="text-muted">A timeline of my professional journey and the skills I've gathered along the way.</p>
                     <a href="#" class="btn btn-outline-custom mt-3">Download CV <i class="bi bi-download ms-2"></i></a>
                 </div>
@@ -454,6 +394,158 @@
             </div>
         </div>
     </section>
+
+
+
+
+
+
+      
+    <!--SKILLLS SECTIONS-->
+
+
+
+
+    <section id="services mt-5" style="margin-top: 150px; margin-bottom: 100px;">
+        <div class="container mt-5">
+            <div class="text-center" data-aos="fade-up">
+                <h6 class="text-white text-uppercase">What I Do</h6>
+                <h2 class="section-title text-uppercase">My Expertise</h2>
+            </div>
+            
+            <div class="row g-4" >
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="glass-card text-center" style="background-color: #ffffff;">
+                        <div class="service-icon"><i class="bi bi-laptop"></i></div>
+                        <h4 class="text-black">Web Development</h4>
+                        <p class="text-black">Building fast, responsive, and scalable websites using modern technologies like React and Bootstrap.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="glass-card text-center" style="background-color: #ffffff;" >
+                        <div class="service-icon"><i class="bi bi-palette"></i></div>
+                        <h4 class="text-black">UI/UX Design</h4>
+                        <p class="text-black">Creating intuitive and aesthetically pleasing interfaces that drive user engagement.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="glass-card text-center" style="background-color: #ffffff;">
+                        <div class="service-icon"><i class="bi bi-hdd-rack"></i></div>
+                        <h4 class="text-black">Backend Systems</h4>
+                        <p class="text-black">Developing robust server-side logic and database structures for complex applications.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    <!--PROJECT SECTIONS-->
+
+
+
+    <section id="projects">
+        <div class="container">
+            <div class="d-flex justify-content-center align-items-end mb-5" data-aos="fade-up">
+                <div class=" ">
+                    <h6 class="text-primary text-uppercase text-center">Portfolio</h6>
+                    <h2 class="section-title mb-0 text-uppercase">Featured Projects</h2>
+                </div>
+              
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="glass-card p-3" id="box">
+                        <div class="project-img-container">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Project 1">
+                        </div>
+                        <h4 class="mt-3">E-Commerce Platform</h4>
+                        <div class="mb-3">  
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">MongoDB</span>
+                        </div>
+                        <p class="text-muted small">A full-stack shopping platform with payment integration and admin dashboard.</p>
+                     
+                    </div>
+                </div>
+
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="glass-card p-3" id="box">
+                        <div class="project-img-container">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Project 2">
+                        </div>
+                        <h4 class="mt-3">Finance Dashboard</h4>
+                        <div class="mb-3">
+                            <span class="tag">Vue.js</span>
+                            <span class="tag">Firebase</span>
+                            <span class="tag">Chart.js</span>
+                        </div>
+                        <p class="text-muted small">Real-time data visualization dashboard for financial analytics.</p>
+                    
+                    </div>
+                </div>
+
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="glass-card p-3" id="box">
+                        <div class="project-img-container">
+                            <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Project 3">
+                        </div>
+                        <h4 class="mt-3">SaaS Landing Page</h4>
+                        <div class="mb-3">
+                            <span class="tag">HTML5</span>
+                            <span class="tag">Bootstrap 5</span>
+                            <span class="tag">Sass</span>
+                        </div>
+                        <p class="text-muted small">High-converting landing page with modern animations and fast load times.</p>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    <!--CONTACT SECTION-->
+
+
 
     <section id="contact">
         <div class="container">
@@ -502,6 +594,25 @@
             </div>
         </div>
     </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    <!--FOOTER-->
+
+
 
     <footer>
         <div class="container text-center">
