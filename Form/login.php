@@ -279,47 +279,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
             }
         }
 
-        // 2. Simulate Backend Login Logic
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault(); // Stop page refresh
-
-            const user = document.getElementById('username').value;
-            const pass = document.getElementById('password').value;
-            const btn = document.getElementById('loginBtn');
-            const btnText = document.getElementById('btnText');
-            const btnSpinner = document.getElementById('btnSpinner');
-            const errorAlert = document.getElementById('errorAlert');
-
-            // Reset Error
-            errorAlert.style.display = 'none';
-
-            // Start Loading Animation
-            btn.disabled = true;
-            btnText.textContent = "Verifying...";
-            btnSpinner.classList.remove('d-none');
-
-            // Simulate Server Delay (1.5 seconds)
-            setTimeout(() => {
-                // --- BACKEND LOGIC SIMULATION ---
-                // In a real app, you would send this data to a PHP/Node.js server
-                if (user === 'admin' && pass === 'admin123') {
-                    // SUCCESS
-                    btnText.textContent = "Success!";
-                    btn.style.background = "#10b981"; // Green color
-                    
-                    // Redirect to dashboard (Create a dashboard.html later)
-                    alert("Login Successful! Redirecting to Dashboard...");
-                    // window.location.href = "dashboard.html"; 
-                } else {
-                    // FAILURE
-                    errorAlert.style.display = 'block';
-                    btn.disabled = false;
-                    btnText.textContent = "Sign In";
-                    btn.style.background = ""; // Reset color
-                    btnSpinner.classList.add('d-none');
-                }
-            }, 1500);
-        });
+  
     </script>
 </body>
 </html>
