@@ -1,3 +1,89 @@
+<?php
+
+session_start();
+include_once("../Database/connection.php");
+
+$email = $password = "";
+$emailerror = $passerror = "";
+$emailnotregister = $passnotregister = $invalid = "";
+
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
+
+    $useremail = trim($_POST['email'] ?? '');
+    $userpassword = $_POST['password'] ?? '';
+
+
+    if ($useremail === '') {
+        $emailerror = 'Empty Email';
+    }
+
+    if ($userpassword === '') {
+        $passerror = 'Empty password';
+    }
+
+  
+    if (empty($emailerror) && empty($passerror)) {
+        $stmt = mysqli_prepare($con, 'SELECT id, names, lastname, email, pass, usertype FROM dbschool WHERE email = ? LIMIT 1');
+        if ($stmt) {
+            mysqli_stmt_bind_param($stmt, 's', $useremail);
+            mysqli_stmt_execute($stmt);
+            $res = mysqli_stmt_get_result($stmt);
+            $row = $res ? mysqli_fetch_assoc($res) : null;
+            mysqli_stmt_close($stmt);
+
+          
+            if (!$row) {
+                $emailnotregister = 'No user registered';
+            } else {
+                $dbPass = $row['pass'];
+                $dbUserType = (int)$row['usertype'];
+
+                // support hashed and plain passwords: try password_verify first
+                $passwordMatches = false;
+                if (password_verify($userpassword, $dbPass)) {
+                    $passwordMatches = true;
+                } elseif ($userpassword === $dbPass) {
+                    $passwordMatches = true;
+                }
+
+                if ($passwordMatches) {
+                    // set session and redirect
+                    $_SESSION['user_id'] = $row['id'];
+                    $_SESSION['email'] = $row['email'];
+                    $_SESSION['name'] = $row['names'];
+                    $_SESSION['lastname'] = $row['lastname'];
+                    $_SESSION['usertype'] = $dbUserType;
+
+                    if ($dbUserType === 0) {
+                        header('Location: ../Home.php');
+                        exit();
+                    } else {
+                        header('Location: ../admin/index.php');
+                        exit();
+                    }
+                } else {
+                    $invalid = 'Username or password invalid';
+                }
+            }
+        } else {
+            $emailnotregister = 'Database error: unable to check credentials.';
+        }
+    }
+
+}
+
+
+
+
+?>
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
